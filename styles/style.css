@@ -1,0 +1,500 @@
+/* main */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a6fa8 0%, #0d4a7a 50%, #0a3558 100%);
+     /* background will be dynamically changed by weather condition */
+    color: white;
+}
+/* main */
+
+/* loading screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a3558;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.loading-content img {
+    width: 80px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-content h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+/* loading screen */
+
+/* nav */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 8px 16px;
+    backdrop-filter: blur(10px);
+    gap: 8px;
+    width: 300px;
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.geolocate {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.geolocate button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.toggle img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px;
+    backdrop-filter: blur(10px);
+}
+/* nav */
+
+/* body */
+main {
+    display: flex;
+    gap: 16px;
+    padding: 16px 24px;
+    height: calc(100vh - 70px);
+    max-height: calc(100vh - 70px);
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 38%;
+    flex-shrink: 0;
+}
+
+.right {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.current-weather,
+.forecast,
+.weather-stats,
+.chart {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.chart {
+    flex: 1;
+    min-height: 0;
+}
+
+.credits {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 12px 20px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.credits span {
+    color: white;
+    font-weight: 600;
+}
+/* body */
+
+/* weather card */
+.current-weather {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    flex: 1;
+    min-height: 0;
+}
+
+.weather-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.temperature {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.city-name {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.date-time {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 4px;
+    
+}
+
+.weather-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.weather-icon img {
+    width: 80px;
+    height: 80px;
+}
+
+.condition {
+    font-size: 14px;
+    text-transform: capitalize;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.city-info {
+    margin-left: 16px;
+}
+/* weather card */
+
+/* forecast card */
+.js-forecast {
+    display: flex;
+    gap: 20px;
+}
+
+.forecast-card {
+    flex: 1;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.forecast-date {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.forecast-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forecast-card img {
+    width: 75px;
+    height: 75px;
+}
+
+.forecast-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.forecast-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.forecast-humidity {
+    font-size: 20px;
+    font-weight: 700;
+}
+/* forecast card */
+
+/* stats card */
+.js-weather-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.stats-card {
+    flex: 1;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-pressure,
+.stats-wind {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.stats-pressure img,
+.stats-wind img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.stats-pressure span,
+.stats-wind span {
+    font-weight: 700;
+}
+/* stats card */
+
+/* background */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+body.light-mode .current-weather,
+body.light-mode .forecast-card,
+body.light-mode .stats-card,
+body.light-mode .chart,
+body.light-mode .credits,
+body.light-mode .logo,
+body.light-mode .search-bar,
+body.light-mode .geolocate {
+    background: rgba(255, 255, 255, 0.4);
+    color: #1a1a2e;
+}
+
+body.light-mode {
+    color: #1a1a2e;
+}
+
+body.light-mode .date-time,
+body.light-mode .forecast-label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-mode .temperature,
+body.light-mode .city-name,
+body.light-mode .condition,
+body.light-mode .forecast-date,
+body.light-mode .forecast-humidity,
+body.light-mode .stats-pressure,
+body.light-mode .stats-wind {
+    color: #1a1a2e;
+}
+/* background */
+
+/* responsive */
+@media (min-width: 769px) and (max-width: 1100px) {
+    main {
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .left {
+        width: 45%;
+    }
+
+    .current-weather {
+        flex: none;
+        height: auto;
+    }
+
+    .temperature {
+        font-size: 52px;
+    }
+
+    .city-name {
+        font-size: 24px;
+    }
+
+    .forecast-card {
+        padding: 14px 10px;
+        gap: 12px;
+    }
+
+    .forecast-card img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .forecast-humidity {
+        font-size: 16px;
+    }
+
+    .chart {
+        flex: 1;
+        min-height: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow: auto;
+    }
+
+    main {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .left, .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .current-weather {
+        height: auto;
+        flex: none;
+    }
+
+    .chart {
+        height: 300px;
+        flex: none;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 8px;
+        height: auto;
+    }
+
+    .search-bar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .temperature {
+        font-size: 48px;
+    }
+
+    .city-name {
+        font-size: 24px;
+    }
+
+    .search-bar {
+        width: 150px;
+    }
+
+    .js-forecast {
+        flex-direction: column;
+    }
+}
+/* responsive */

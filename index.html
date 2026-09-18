@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WeatherWave — real-time weather conditions, forecast, and temperature trends for any city in the world.">
+    <meta name="keywords" content="weather, forecast, temperature, humidity, wind, real-time weather">
+    <meta name="author" content="Carl Amiel">
+    <meta property="og:title" content="WeatherWave - Real-time Weather">
+    <meta property="og:description" content="Check current weather conditions, hourly forecast, and temperature trends for any city.">
+    <meta property="og:type" content="website">
+    <title>WeatherWave - Real-time Weather</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="images/cloud.webp" type="image/webp">
+</head>
+<body>
+    <div class="loading-screen" id="loading-screen">
+    <div class="loading-content">
+        <img src="images/cloud.webp" alt="logo">
+        <h1>WeatherWave</h1>
+        <div class="loading-spinner"></div>
+    </div>
+</div>
+
+    <video id="bg-video" src="" autoplay muted loop playsinline></video>
+    
+<nav>
+    <div class="logo">
+        <img src="images/cloud.webp" alt="cloud-logo">
+        WeatherWave
+    </div>
+    <div class="search-wrapper">
+    <div class="search-bar">
+        <input type="text" placeholder="Search location...." class="js-input-location">
+        <button class="js-search-btn">🔍</button>
+    </div>
+    <div class="geolocate">
+        <button class="js-geolocate-btn">📍</button>
+    </div>
+    </div>
+    <div class="toggle">
+        <img src="images/toggle.png" alt="toggle light or dark" class="js-toggle">
+    </div>
+</nav>
+
+<main>
+    <div class="left">
+        <div class="current-weather js-current-weather"></div>
+        <div class="forecast js-forecast"></div>
+        <div class="weather-stats js-weather-stats"></div>
+    </div>
+    <div class="right">
+        <div class="chart js-chart">
+            <canvas id="tempChart"></canvas>
+        </div>
+        <div class="credits">
+            Designed and Built by <span>Carl Amiel Balita</span> with HTML, CSS, JavaScript, Chart.js, and OpenWeatherMap API.
+        </div>
+
+    </div>
+</main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
