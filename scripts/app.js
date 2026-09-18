@@ -1,12 +1,11 @@
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
-const apiKey = 'd1a129f6518a4aeb805a1e489aff1add';
-const apiUrl = 'https://api.openweathermap.org/data/2.5/';
+
 
 //Weather functions
 async function getWeather(query) {
     try{
-        const response = await fetch(apiUrl + 'weather?' + query + '&appid=' + apiKey + '&units=metric');
+        const response = await fetch(`/.netlify/functions/weather?q=${encodeURIComponent(query)}`);
         const weatherResponse = await response.json();
         console.log(weatherResponse);
         renderWeather(weatherResponse);
