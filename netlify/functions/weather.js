@@ -1,5 +1,6 @@
 exports.handler = async function (event) {
   const query = event.queryStringParameters.q;
+  const type = event.queryStringParameters.type || 'weather';
   const apiKey = process.env.OPENWEATHER_API_KEY;
 
   try {
@@ -7,10 +8,10 @@ exports.handler = async function (event) {
 
     if (query.startsWith('lat=')) {
       weatherUrl =
-        `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${apiKey}&units=metric`;
+        `https://api.openweathermap.org/data/2.5/${type}?${query}&appid=${apiKey}&units=metric`;
     } else {
       weatherUrl =
-        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${apiKey}&units=metric`;
+        `https://api.openweathermap.org/data/2.5/${type}?q=${encodeURIComponent(query)}&appid=${apiKey}&units=metric`;
     }
 
     const response = await fetch(weatherUrl);

@@ -42,16 +42,22 @@ function renderWeather(weatherResponse) {
 //Weather functions
 
 //Forecast functions
-async function getForecast(query){
-    try{
-        const response = await fetch(apiUrl + 'forecast?' + query + '&appid=' + apiKey + '&units=metric');
-        const forecastResponse = await response.json();
-        console.log(forecastResponse);
-        renderForecast(forecastResponse);
-        renderChart(forecastResponse);
-    } catch(error){
-        console.log('Unexpected error. Please try again later.')
-    }
+async function getForecast(query) {
+  try {
+    const response = await fetch(
+      `/.netlify/functions/weather?type=forecast&q=${encodeURIComponent(query)}`
+    );
+
+    const forecastResponse = await response.json();
+
+    console.log(forecastResponse);
+
+    renderForecast(forecastResponse);
+    renderChart(forecastResponse);
+
+  } catch (error) {
+    console.error('Forecast error:', error);
+  }
 }
 
 function renderForecast(forecastResponse){
