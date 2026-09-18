@@ -3,10 +3,17 @@ exports.handler = async function (event) {
   const apiKey = process.env.OPENWEATHER_API_KEY;
 
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${apiKey}&units=metric`
-    );
+    let weatherUrl;
 
+    if (query.startsWith('lat=')) {
+      weatherUrl =
+        `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${apiKey}&units=metric`;
+    } else {
+      weatherUrl =
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(query)}&appid=${apiKey}&units=metric`;
+    }
+
+    const response = await fetch(weatherUrl);
     const data = await response.json();
 
     return {
@@ -16,7 +23,9 @@ exports.handler = async function (event) {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch weather data' })
+      body: JSON.stringify({
+        error: 'Failed to fetch weather data'
+      })
     };
   }
 };
