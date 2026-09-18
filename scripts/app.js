@@ -5,7 +5,7 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 //Weather functions
 async function getWeather(query) {
     try{
-        const response = await fetch(`/.netlify/functions/weather?q=${encodeURIComponent(query)}`);
+       const response = await fetch( `/.netlify/functions/weather?${query}`);
         const weatherResponse = await response.json();
         console.log(weatherResponse);
         renderWeather(weatherResponse);
@@ -44,9 +44,9 @@ function renderWeather(weatherResponse) {
 //Forecast functions
 async function getForecast(query) {
   try {
-    const response = await fetch(
-      `/.netlify/functions/weather?type=forecast&q=${encodeURIComponent(query)}`
-    );
+  const response = await fetch(
+  `/.netlify/functions/weather?type=forecast&${query}`
+        );
 
     const forecastResponse = await response.json();
 
